@@ -97,4 +97,8 @@ class Proceso {
 
         //print_r($TIPODATOS);
     }
+
+    /*
+    intento comprobacion 
+    */
 }
