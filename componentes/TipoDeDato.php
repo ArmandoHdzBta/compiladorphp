@@ -4,7 +4,7 @@ namespace componentes;
 
 class TipoDeDato{
     //variable estatica
-  public static $TIPODATOS = ["int", "double", "string",];
+  public static $TIPODATOS = ["int", "double", "string"];
 
 }
 
