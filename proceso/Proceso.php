@@ -124,4 +124,8 @@ class Proceso {
         else
             echo "Error de compilacion";
     }
+
+    /*
+    intento comprobacion 
+    */
 }
