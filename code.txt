@@ -1,0 +1,2 @@
+ent num = 10;
+ent numero = 11;
