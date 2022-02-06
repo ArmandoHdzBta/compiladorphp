@@ -16,7 +16,8 @@ class Proceso {
 
     public function __construct($url) {
         $this->url = $url;
-        var_dump($this->comprobar());
+        // var_dump($this->comprobar());
+        $this->compilar($this->comprobar());
     }
 
     private function obtenerContenido(){
@@ -48,8 +49,8 @@ class Proceso {
         }
     }
 
-    private function conprobarInicio($inicio){
-        if(in_array($inicio, TipoDeDato::$TIPODATOS) || in_array($inicio, SimbolosGenerales::$SIMBOLOSGENERALES))
+    private function comprobarInicio($inicio){
+        if(in_array($inicio, TipoDeDato::$TIPODATOS))
             return true;
         else
             return false;
@@ -76,25 +77,51 @@ class Proceso {
             return false;
     }
 
+    private function comprobarValor($valor){
+        if(in_array($valor, TipoDeDato::$NUMEROS))
+            return true;
+        else
+            return false;
+    }
+
     private function comprobar(){
         $cadena = $this->separarLinea();
-        for ($i=0; $i < sizeof($cadena); $i++) {
-            echo $cadena[$i]. " ";
-            var_dump($this->conprobarInicio($cadena[$i]));
-            echo "<hr>";
-            /*if(!$this->conprobarInicio($cadena[$i])){
-                return false;
-            }else if(!$this->comprobarVariable($cadena[$i])){
+        $i = 0;
+        for ($i; $i < sizeof($cadena)-1; $i++) {
+            /*echo $cadena[$i]. " correcto: ";
+            var_dump($this->comprobarInicio($cadena[$i]));
+            echo "<hr>";*/
+
+            if($this->comprobarInicio($cadena[$i])){
+                // echo $cadena[$i]. " correcto: ";
+                if($this->comprobarVariable($cadena[$i+1])){
+                    // echo $cadena[$i+1]. " correcto: ";
+                    if($this->comprobarAsignacion($cadena[$i+2])){
+                        if($this->comprobarValor($cadena[$i+3]))
+                        echo $cadena[$i]." ".$cadena[$i+1]." ".$cadena[$i+2]." ".$cadena[$i+3]."<br>";
+                        $i = $i + 4;
+                        return true;
+                    }
+                }
+            }
+
+
+            /*if($this->comprobarInicio($cadena[$i])){
+                return true;
+            }else if($this->comprobarVariable($cadena[$i])){
                 return false;
             }else if($this->comprobarAsignacion($cadena[$i])){
-                return false;
+                return true;
             }else if(!$this->comprobarNoAsignacion($cadena[$i])){
                 return false;  
-            }else{
-                return true;
             }*/
         }
+    }
 
-        //print_r($TIPODATOS);
+    private function compilar($compilarEstado){
+        if($compilarEstado)
+            echo "Compilado correctamente";
+        else
+            echo "Error de compilacion";
     }
 }

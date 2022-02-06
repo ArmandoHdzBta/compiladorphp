@@ -3,5 +3,5 @@
 namespace componentes;
 
 class SimbolosGenerales{
-    public static $SIMBOLOSGENERALES = [';', 'print'];
+    public static $SIMBOLOSGENERALES = [';'];
 }
