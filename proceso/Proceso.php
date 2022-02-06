@@ -2,13 +2,17 @@
 
 namespace proceso;
 
+include "./componentes/TipoDeDato.php";
+
+use componentes\TipoDeDato;
+
 class Proceso {
     private $url;
     private $palabras = [];
 
     public function __construct($url) {
         $this->url = $url;
-        $this->comprobar();
+        print_r($this->comprobar());
     }
 
     private function obtenerContenido(){
@@ -41,6 +45,16 @@ class Proceso {
     }
 
     private function comprobar(){
-        
+        $tipo = TipoDeDato::$TIPODATOS;
+
+        for ($i=0; $i < sizeof($this->separarLinea()); $i++) { 
+            if(in_array($this->separarLinea()[$i], $tipo)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //print_r($TIPODATOS);
     }
 }

@@ -1,2 +1,2 @@
-ent num = 10;
-ent numero = 11;
+int num = 10;
+let numero = 11;
